@@ -2,6 +2,8 @@
 
 #include "include/dialog.h"
 
+using namespace iup;
+
 Dialog::Dialog() { this->handle = IupDialog(NULL); }
 
 Dialog &Dialog::setTitle(string title) {
@@ -21,17 +23,16 @@ string Dialog::getTitle() { return this->title; }
 string Dialog::getSize() { return this->size; }
 
 Dialog &Dialog::show() {
-  Widget::show();
+  IupShow(this->handle);
   return *this;
 }
 
 Dialog &Dialog::hide() {
-  Widget::hide();
+  IupHide(this->handle);
   return *this;
 }
 
-Dialog &Dialog::append(Ihandle *child)
-{
-  Widget::append(child);
+Dialog &Dialog::append(Ihandle *child) {
+  IupAppend(this->handle, child);
   return *this;
 }

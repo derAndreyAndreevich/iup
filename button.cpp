@@ -1,35 +1,38 @@
 #include <iup.h>
 #include "include/button.h"
 
-Button &Button::setTitle(string title) {
-  this->title = title;
-  IupSetAttribute(this->handle, "TITLE", &title[0]);
+using namespace iup;
+
+string Button::getSize() const { return size; }
+
+Button &Button::setSize(const string &value) {
+  size = value;
+  IupSetAttribute(this->handle, "SIZE", &value[0]);
   return *this;
 }
-
-Button &Button::setSize(string size) {
-  this->size = size;
-  IupSetAttribute(this->handle, "SIZE", &size[0]);
-  return *this;
-}
-
-string Button::getTitle() { return this->title; }
-
-string Button::getSize() { return this->size; }
 
 Button &Button::show() {
-  Widget::show();
+  IupShow(this->handle);
   return *this;
 }
 
 Button &Button::hide() {
-  Widget::hide();
+  IupHide(this->handle);
   return *this;
 }
 
-Button &Button::append(Ihandle *child) {
-  Widget::append(child);
-  *this;
+//Button::onClick(Button self)
+//{
+//  IupSetCallback()
+//}
+string Button::getTitle() const { return title; }
+
+Button &Button::setTitle(const string &value) {
+  title = value;
+  IupSetAttribute(this->handle, "TITLE", &value[0]);
+  return *this;
 }
 
 Button::Button() { this->handle = IupButton(NULL, NULL); }
+
+Button::Button(Ihandle *handle) : handle(handle) {}

@@ -1,28 +1,34 @@
 #include <iostream>
-
-#include "widget.h"
+#include <iup.h>
 
 #ifndef BUTTON_H
 #define BUTTON_H
 
 using namespace std;
 
-class Button : public Widget {
+namespace iup {
+class Button {
+
   string title;
   string size;
 
-
 public:
-  Button &setTitle(string title);
-  Button &setSize(string size);
-  string getTitle();
-  string getSize();
+  Ihandle *handle;
+  string getTitle() const;
+  Button &setTitle(const string &value);
+  string getSize() const;
+  Button &setSize(const string &value);
 
   Button &show();
   Button &hide();
-  Button &append(Ihandle *child);
+
+//  onClick(Button self);
+
 
   Button();
+  Button(Ihandle *handle);
 };
+
+}
 
 #endif // BUTTON_H

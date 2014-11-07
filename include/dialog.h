@@ -7,11 +7,13 @@
 
 using namespace std;
 
-class Dialog : public Widget {
+namespace iup {
+class Dialog {
   string title;
   string size;
 
 public:
+  Ihandle *handle;
   Dialog &setTitle(string title);
   Dialog &setSize(string size);
   string getTitle();
@@ -23,5 +25,5 @@ public:
 
   Dialog();
 };
-
+}
 #endif // DIALOG_H
